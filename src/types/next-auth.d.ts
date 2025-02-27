@@ -1,5 +1,7 @@
-// In a types file, e.g., types/next-auth.d.ts
+
 import NextAuth from "next-auth";
+
+console.log(NextAuth)
 
 declare module "next-auth" {
   interface Session {

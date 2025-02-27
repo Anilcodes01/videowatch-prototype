@@ -3,15 +3,8 @@ import { useState } from "react";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 
-type User = {
-  id: string;
-  name: string;
-  avatarUrl?: string;
-};
-
 export default function Appbar() {
   const { data: session } = useSession();
-  const userId = session?.user.id;
   const router = useRouter();
 
   const [dropdownOpen, setDropdownOpen] = useState(false);
