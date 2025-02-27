@@ -1,30 +1,34 @@
-'use client';
+"use client";
 
-import { useEffect } from 'react';
-import { useSession, signIn } from 'next-auth/react';
-import { useRouter } from 'next/navigation';
+import { useEffect } from "react";
+import { useSession, signIn } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 export default function Home() {
   const { data: session, status } = useSession();
   const router = useRouter();
 
-  console.log(session)
+  console.log(session);
 
   useEffect(() => {
-    if (status === 'authenticated') {
-      router.push('/dashboard');
+    if (status === "authenticated") {
+      router.push("/dashboard");
     }
   }, [status, router]);
 
   return (
     <main className="flex min-h-screen bg-orange-300 flex-col items-center justify-center p-4">
       <div className="max-w-md w-full bg-white rounded-lg shadow-md p-8">
-        <h1 className="text-2xl font-bold text-center text-orange-500 mb-6">Welcome to VideoWatch</h1>
-        <p className="text-center mb-8  text-orange-500">Log in to manage your videoWatch streams</p>
-        
+        <h1 className="text-2xl font-bold text-center text-orange-500 mb-6">
+          Welcome to VideoWatch
+        </h1>
+        <p className="text-center mb-8  text-orange-500">
+          Log in to manage your videoWatch streams
+        </p>
+
         <div className="space-y-4">
           <button
-            onClick={() => signIn('google', { callbackUrl: '/dashboard' })}
+            onClick={() => signIn("google", { callbackUrl: "/dashboard" })}
             className="w-full bg-white cursor-pointer text-black border border-gray-300 rounded-lg py-2 px-4 flex items-center justify-center hover:bg-gray-50"
           >
             <svg className="w-5 h-5 mr-2" viewBox="0 0 24 24">
@@ -47,12 +51,13 @@ export default function Home() {
             </svg>
             Sign in with Google
           </button>
-          
-          <button
-            onClick={() => signIn('facebook', { callbackUrl: '/dashboard' })}
-            className="w-full bg-[#1877F2] cursor-pointer text-white rounded-lg py-2 px-4 flex items-center justify-center hover:bg-[#166FE5]"
-          >
-            <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
+
+          <button className="w-full bg-[#1877F2] cursor-pointer text-white rounded-lg py-2 px-4 flex items-center justify-center hover:bg-[#166FE5]">
+            <svg
+              className="w-5 h-5 mr-2"
+              fill="currentColor"
+              viewBox="0 0 24 24"
+            >
               <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
             </svg>
             Sign in with Facebook
